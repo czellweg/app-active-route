@@ -8,39 +8,10 @@
     </a>
 </p>
 
-_[Demo and API docs](https://mgibas.github.io/app-active-route/components/app-active-route/)_
+_[Component Page](https://www.webcomponents.org/element/mgibas/app-active-route)_
 
 Simple polymer element that selects currently active app-route
 
-
-<!--
-```
-<custom-element-demo>
-  <template>
-    <script src="../webcomponentsjs/webcomponents-lite.js"></script>
-    <link rel="import" href="../iron-pages/iron-pages.html">
-    <link rel="import" href="../app-route/app-route.html">
-    <link rel="import" href="../paper-input/paper-input.html">
-    <link rel="import" href="app-active-route.html">
-    <template is="dom-bind" id="demo">
-        <app-active-route pattern="{{activePattern}}" fallback-pattern="/">
-          <app-route route="[[route]]" pattern="/nested"></app-route>
-        </app-active-route>
-
-        <paper-input label="Route path" value="{{route.path}}"></paper-input>
-
-        <iron-pages selected="[[activePattern]]" attr-for-selected="for-pattern">
-          <div for-pattern="/">Default selection</div>
-          <div for-pattern="/nested">nested path</div>
-        </iron-pages>
-    </template>
-    <script>
-    demo.route = {};
-    </script>
-  </template>
-</custom-element-demo>
-```
--->
 ```html
 <app-active-route pattern="{{activePattern}}" fallback-pattern="/">
   <app-route route="[[route]]" pattern="/nested"></app-route>
