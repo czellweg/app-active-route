@@ -59,3 +59,9 @@ Simple polymer element that selects currently active app-route
   <div for-pattern="/other">other path</div>
 </iron-pages>
 ```
+
+## Bower
+
+```
+bower install app-active-route
+```
