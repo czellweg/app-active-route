@@ -1,0 +1,26 @@
+{
+  "name": "app-active-route",
+  "description": "Simple polymer element that selects active route from given app-routes",
+  "main": "app-active-route.html",
+  "dependencies": {
+    "polymer": "Polymer/polymer#^1.9.1"
+  },
+  "keywords":[
+    "web-components",
+    "polymer",
+    "app-route",
+    "route"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/mgibas/app-active-route"
+  },
+  "devDependencies": {
+    "app-route": "polymerelements/app-route#^1.0.1",
+    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+    "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+    "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0",
+    "iron-pages": "polymerelements/iron-pages#^1.0.9",
+    "paper-input": "polymerelements/paper-input#^1.1.24"
+  }
+}

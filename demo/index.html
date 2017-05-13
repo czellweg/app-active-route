@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+    <title>app-active-route demo</title>
+
+    <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+
+    <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
+    <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-pages/iron-pages.html">
+    <link rel="import" href="../../app-route/app-route.html">
+    <link rel="import" href="../../paper-input/paper-input.html">
+    <link rel="import" href="../app-active-route.html">
+
+    <style is="custom-style" include="demo-pages-shared-styles">
+    </style>
+  </head>
+  <body>
+    <div class="vertical-section-container centered">
+      <h3>Simple page selector</h3>
+      <demo-snippet>
+        <template is="dom-bind" id="demo">
+          <app-active-route pattern="{{activePattern}}">
+            <app-route route="[[route]]" pattern="/one"></app-route>
+            <app-route route="[[route]]" pattern="/two/:id" data="{{data}}"></app-route>
+          </app-active-route>
+
+          <paper-input label="Route path" value="{{route.path}}"></paper-input>
+
+          <iron-pages selected="[[activePattern]]" attr-for-selected="for-pattern">
+            <div for-pattern="/one">/one is selected</div>
+            <div for-pattern="/two/:id">/two/:id is selected with id '[[data.id]]'</div>
+          </iron-pages>
+
+        </template>
+        <script>
+          demo.route = {};
+        </script>
+      </demo-snippet>
+    </div>
+
+    <div class="vertical-section-container centered">
+      <h3>Page selector with fallback pattern</h3>
+      <demo-snippet>
+        <template is="dom-bind" id="demo2">
+          <app-active-route pattern="{{activePattern}}" fallback-pattern="/">
+            <app-route route="[[route]]" pattern="/nested"></app-route>
+          </app-active-route>
+
+          <paper-input label="Route path" value="{{route.path}}"></paper-input>
+
+          <iron-pages selected="[[activePattern]]" attr-for-selected="for-pattern">
+            <div for-pattern="/">Default selection</div>
+            <div for-pattern="/nested">nested path</div>
+          </iron-pages>
+        </template>
+        <script>
+          demo2.route = {};
+        </script>
+      </demo-snippet>
+    </div>
+  </body>
+</html>
