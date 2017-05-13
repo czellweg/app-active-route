@@ -122,7 +122,7 @@ and inside `nested-component`
         }
       },
       attached: function() {
-        let self = this;
+        var self = this;
         this._routes = this.getEffectiveChildren();
         this._routes.forEach(function(route){
           route.addEventListener('active-changed', function(){ self._handleActiveChanged(route); });
