@@ -29,6 +29,7 @@ Simple polymer element that selects currently active app-route
           <template is="dom-bind" id="demo">
             <app-active-route pattern="{{activePattern}}" fallback-pattern="/">
               <app-route route="[[route]]" pattern="/nested"></app-route>
+              <app-route route="[[route]]" pattern="/other"></app-route>
             </app-active-route>
 
             <paper-input label="Route path" value="{{route.path}}"></paper-input>
@@ -36,6 +37,7 @@ Simple polymer element that selects currently active app-route
             <iron-pages selected="[[activePattern]]" attr-for-selected="for-pattern">
               <div for-pattern="/">Default selection</div>
               <div for-pattern="/nested">nested path</div>
+              <div for-pattern="/other">other path</div>
             </iron-pages>
           </template>
           <script>

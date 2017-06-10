@@ -15,26 +15,31 @@
     <link rel="import" href="../../paper-input/paper-input.html">
     <link rel="import" href="../app-active-route.html">
 
-    <style is="custom-style" include="demo-pages-shared-styles">
-    </style>
+    <custom-style>
+      <style is="custom-style" include="demo-pages-shared-styles">
+      </style>
+    </custom-style>
   </head>
   <body>
     <div class="vertical-section-container centered">
       <h3>Simple page selector</h3>
       <demo-snippet>
-        <template is="dom-bind" id="demo">
-          <app-active-route pattern="{{activePattern}}">
-            <app-route route="[[route]]" pattern="/one"></app-route>
-            <app-route route="[[route]]" pattern="/two/:id" data="{{data}}"></app-route>
-          </app-active-route>
+        <template>
+          <dom-bind id="demo">
+            <template>
+              <app-active-route pattern="{{activePattern}}">
+                <app-route route="[[route]]" pattern="/one" active="{{active}}"></app-route>
+                <app-route route="[[route]]" pattern="/two/:id" data="{{data}}"></app-route>
+              </app-active-route>
 
-          <paper-input label="Route path" value="{{route.path}}"></paper-input>
-
-          <iron-pages selected="[[activePattern]]" attr-for-selected="for-pattern">
-            <div for-pattern="/one">/one is selected</div>
-            <div for-pattern="/two/:id">/two/:id is selected with id '[[data.id]]'</div>
-          </iron-pages>
-
+              <paper-input label="Route path" value="{{route.path}}"></paper-input>
+              [[active]]
+              <iron-pages selected="[[activePattern]]" attr-for-selected="for-pattern">
+                <div for-pattern="/one">/one is selected</div>
+                <div for-pattern="/two/:id">/two/:id is selected with id '[[data.id]]'</div>
+              </iron-pages>
+            </template>
+          </dom-bind>
         </template>
         <script>
           demo.route = {};
@@ -45,17 +50,21 @@
     <div class="vertical-section-container centered">
       <h3>Page selector with fallback pattern</h3>
       <demo-snippet>
-        <template is="dom-bind" id="demo2">
-          <app-active-route pattern="{{activePattern}}" fallback-pattern="/">
-            <app-route route="[[route]]" pattern="/nested"></app-route>
-          </app-active-route>
+        <template>
+          <dom-bind id="demo2">
+            <template>
+              <app-active-route pattern="{{activePattern}}" fallback-pattern="/">
+                <app-route route="[[route]]" pattern="/nested"></app-route>
+              </app-active-route>
 
-          <paper-input label="Route path" value="{{route.path}}"></paper-input>
+              <paper-input label="Route path" value="{{route.path}}"></paper-input>
 
-          <iron-pages selected="[[activePattern]]" attr-for-selected="for-pattern">
-            <div for-pattern="/">Default selection</div>
-            <div for-pattern="/nested">nested path</div>
-          </iron-pages>
+              <iron-pages selected="[[activePattern]]" attr-for-selected="for-pattern">
+                <div for-pattern="/">Default selection</div>
+                <div for-pattern="/nested">nested path</div>
+              </iron-pages>
+            </template>
+          </dom-bind>
         </template>
         <script>
           demo2.route = {};
