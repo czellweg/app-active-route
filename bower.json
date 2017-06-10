@@ -2,6 +2,7 @@
   "name": "app-active-route",
   "description": "Simple polymer element that selects active route from given app-routes",
   "main": "app-active-route.html",
+  "version": "2.0.0",
   "dependencies": {
     "polymer": "Polymer/polymer#^2.0.1"
   },
