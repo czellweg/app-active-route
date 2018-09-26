@@ -8,9 +8,9 @@
   ],
   "repository": {
     "type": "git",
-    "url": "https://github.com/mgibas/app-active-route"
+    "url": "https://github.com/czellweg/app-active-route.git"
   },
-  "name": "@polymer/app-active-route",
+  "name": "app-active-route",
   "version": "",
   "resolutions": {
     "inherits": "2.0.3",
