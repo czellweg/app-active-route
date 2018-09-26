@@ -57,10 +57,11 @@ and inside `nested-component`
   from HTML and may be out of place here. Review them and
   then delete this comment!
 */
-import { html } from '@polymer/polymer/lib/utils/html-tag.js';
+import { PolymerElement, html } from '@polymer/polymer/polymer-element.js';
+import { FlattenedNodesObserver } from '@polymer/polymer/lib/utils/flattened-nodes-observer.js';
 
-import { Element } from '@polymer/polymer/polymer-element.js';
-class AppActiveRoute extends Element {
+
+class AppActiveRoute extends PolymerElement {
   static get template() {
     return html`
     <content select="app-route"></content>
@@ -140,7 +141,8 @@ class AppActiveRoute extends Element {
     }
 
     let self = this;
-    this._routes = this.getEffectiveChildren();
+    //this._routes = this.getEffectiveChildren();
+    this._routes = FlattenedNodesObserver.getFlattenedNodes(this).filter(n => n.nodeType === Node.ELEMENT_NODE)
     this._routes.forEach(function(route){
       route.addEventListener('active-changed', function() { self._handleActiveChanged(route); } );
       if (route.active) {
