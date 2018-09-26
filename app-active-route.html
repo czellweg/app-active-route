@@ -1,4 +1,5 @@
-<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="../bower_components/polymer/polymer-element.html">
+
 
 <!--
 `app-active-route`
@@ -56,94 +57,125 @@ and inside `nested-component`
 -->
 
 <dom-module id="app-active-route">
+
   <template>
     <content select="app-route"></content>
   </template>
 
   <script>
-    Polymer({
-      is: 'app-active-route',
-      properties: {
-        /**
-        * Currently active app-route
-        */
-        route: {
-          type: Object,
-          readOnly: true,
-          notify: true
-        },
-        /**
-        * Pattern of currently active app-route
-        */
-        pattern: {
-          type: String,
-          readOnly: true,
-          notify: true,
-          computed: '_computePattern(route)'
-        },
-        /**
-        * Data of currently active app-route
-        */
-        data: {
-          type: Object,
-          readOnly: true,
-          notify: true,
-          computed: '_computeData(route)'
-        },
-        /**
-        * Tail of currently active app-route
-        */
-        tail: {
-          type: Object,
-          readOnly: true,
-          notify: true,
-          computed: '_computeTail(route)'
-        },
-        /**
-        * Default pattern fallback if there is no active app-route
-        */
-        fallbackPattern: {
-          type: String
-        },
-        /**
-        * Default data fallback if there is no active app-route
-        */
-        fallbackData: {
-          type: String
-        },
-        /**
-        * Default tail fallback if there is no active app-route
-        */
-        fallbackTail: {
-          type: String
-        },
-        _routes: {
-          type: Array
+  class AppActiveRoute extends Polymer.Element {
+
+      static get is() { return "app-active-route"; }
+
+      static get properties() {
+        return {
+          /**
+          * Currently active app-route
+          */
+          route: {
+            type: Object,
+            readOnly: true,
+            notify: true
+          },
+          /**
+          * Pattern of currently active app-route
+          */
+          pattern: {
+            type: String,
+            readOnly: true,
+            notify: true,
+            computed: '_computePattern(route)'
+          },
+          /**
+          * Data of currently active app-route
+          */
+          data: {
+            type: Object,
+            readOnly: true,
+            notify: true,
+            computed: '_computeData(route)'
+          },
+          /**
+          * Tail of currently active app-route
+          */
+          tail: {
+            type: Object,
+            readOnly: true,
+            notify: true,
+            computed: '_computeTail(route)'
+          },
+          /**
+          * Default pattern fallback if there is no active app-route
+          */
+          fallbackPattern: {
+            type: String
+          },
+          /**
+          * Default data fallback if there is no active app-route
+          */
+          fallbackData: {
+            type: String
+          },
+          /**
+          * Default tail fallback if there is no active app-route
+          */
+          fallbackTail: {
+            type: String
+          },
+          _routes: {
+            type: Array
+          }
+        };
+      }
+
+      constructor() {
+        super();
+      }
+
+      connectedCallback() {
+        if (super.connectedCallback) {
+          super.connectedCallback();
         }
-      },
-      attached: function() {
-        var self = this;
+
+        let self = this;
         this._routes = this.getEffectiveChildren();
         this._routes.forEach(function(route){
-          route.addEventListener('active-changed', function(){ self._handleActiveChanged(route); });
+          route.addEventListener('active-changed', function() { self._handleActiveChanged(route); } );
           if (route.active) {
             self._setRoute(route);
           }
         });
         this._setRoute(this._routes.find(function(r){ return r.active; }) || null);
-      },
-      _handleActiveChanged: function() {
+      }
+
+      disconnectedCallback() {
+        if (super.disconnectedCallback) {
+          super.disconnectedCallback();
+        }
+      }
+
+      ready() {
+        super.ready();
+      }
+
+      _handleActiveChanged() {
         return this._setRoute(this._routes.find(function(r){ return r.active; }) || null);
-      },
-      _computePattern: function(route) {
+      }
+
+      _computePattern(route) {
         return route ? route.pattern : this.fallbackPattern;
-      },
-      _computeData: function(route) {
+      }
+
+      _computeData(route) {
         return route ? route.data : this.fallbackData;
-      },
-      _computeTail: function(route) {
+      }
+
+      _computeTail(route) {
         return route ? route.tail : this.fallbackTail;
       }
-    });
+    }
+
+    window.customElements.define(AppActiveRoute.is, AppActiveRoute);
+
   </script>
 </dom-module>
